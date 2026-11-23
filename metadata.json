@@ -1,0 +1,6 @@
+{
+  "name": "District Warriors",
+  "description": "BANGLADESH: DISTRICT WARRIORS — Scalable 3D action game foundation featuring a Dhaka-inspired playable 3D map, 1st/3rd-person camera, 64-district progression, and bilingual Bengali/English support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
