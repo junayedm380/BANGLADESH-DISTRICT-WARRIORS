@@ -1,1 +1,55 @@
 /build
+from PIL import Image, ImageDraw, ImageFont
+import os
+
+# --- CONFIGURATION ---
+WIDTH, HEIGHT = 1920, 1080  # 16:9 Full Screen
+BG_COLOR = (15, 20, 30)      # Dark cinematic blue/grey
+ACCENT_COLOR = (255, 140, 0) # Orange/Gold for premium feel
+TEXT_COLOR = (255, 255, 255)
+FONT_PATH = "arial.ttf"      # Change to your local font path (e.g., "C:/Windows/Fonts/arialbd.ttf")
+
+# Create the main canvas
+poster = Image.new("RGB", (WIDTH, HEIGHT), BG_COLOR)
+draw = ImageDraw.Draw(poster)
+
+# --- LOAD FONTS ---
+try:
+    title_font = ImageFont.truetype(FONT_PATH, 90)
+    subtitle_font = ImageFont.truetype(FONT_PATH, 50)
+    obj_font = ImageFont.truetype(FONT_PATH, 40)
+except IOError:
+    print("Font not found. Using default font.")
+    title_font = ImageFont.load_default()
+    subtitle_font = ImageFont.load_default()
+    obj_font = ImageFont.load_default()
+
+# --- DRAW PLACEHOLDERS ---
+# 1. Background Image Placeholder (Top half)
+draw.rectangle([0, 0, WIDTH, 600], fill=(40, 50, 70), outline=ACCENT_COLOR, width=3)
+draw.text((WIDTH//2, 300), "[ INSERT BACKGROUND: Dhaka Skyline / Rescue Scene ]", 
+          font=obj_font, fill=(150, 150, 150), anchor="mm")
+
+# 2. Hero Image Placeholder (Foreground Left)
+draw.rectangle([100, 500, 800, 1000], fill=(30, 40, 50), outline=ACCENT_COLOR, width=3)
+draw.text((450, 750), "[ INSERT HERO: Bangladeshi Warrior ]", 
+          font=obj_font, fill=(150, 150, 150), anchor="mm")
+
+# 3. UI Panel (Right side)
+draw.rectangle([1200, 650, 1820, 1000], fill=(20, 25, 35), outline=ACCENT_COLOR, width=2)
+
+# --- ADD TEXT ---
+# Main Title
+draw.text((1200, 680), "MISSION 01", font=title_font, fill=ACCENT_COLOR)
+draw.text((1200, 780), "DHAKA CITY RESCUE", font=subtitle_font, fill=TEXT_COLOR)
+
+# Objectives Section
+draw.text((1200, 860), "OBJECTIVES:", font=obj_font, fill=ACCENT_COLOR)
+draw.text((1220, 910), "1. Rescue civilians.", font=obj_font, fill=TEXT_COLOR)
+draw.text((1220, 960), "2. Secure the designated area.", font=obj_font, fill=TEXT_COLOR)
+draw.text((1220, 1010), "3. Complete the city rescue operation.", font=obj_font, fill=TEXT_COLOR)
+
+# --- SAVE AND SHOW ---
+poster.save("Dhaka_Rescue_Poster_Template.png")
+print("Poster template created successfully: Dhaka_Rescue_Poster_Template.png")
+poster.show()
